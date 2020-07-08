@@ -1,10 +1,9 @@
 package com.softeq.crawler;
 
+import com.softeq.crawler.logger.Logger;
 import com.softeq.crawler.util.CheckPage;
 import com.softeq.crawler.util.CheckURL;
 import com.softeq.crawler.util.SerializeUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ArrayDeque;
@@ -22,7 +21,6 @@ import java.util.stream.Collectors;
 
 //Perform a scan by searching for a given string.
 public class Crawler{
-	Logger log = LogManager.getLogger(Crawler.class);
 	private final CheckPage checkPage;
 	private final CheckURL checkURL = new CheckURL ();
 
@@ -76,8 +74,7 @@ public class Crawler{
 		Map<String, List<Integer>> sortedMap = sorted ();
 		SerializeUtil.serialize (foundLinks, false);
 		SerializeUtil.serialize (sortedMap,true);
-		//sortedMap.forEach ((k,v)-> log.debug (String.format ("%s%s%s",v," : ",k)));
-		log.debug ("hiiii");
+		sortedMap.forEach ((k,v)-> Logger.logInf.info (String.format ("%s%s%s",v," : ",k)));
 	}
 
 	private Map<String, List<Integer>> sorted(){

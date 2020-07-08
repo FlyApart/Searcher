@@ -1,5 +1,6 @@
 package com.softeq.crawler.util;
 
+import com.softeq.crawler.logger.Logger;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URL;
@@ -25,6 +26,7 @@ public class CheckURL {
 		try {
 			return new URL (link.replace (WWW, SEPARATOR));
 		} catch (Exception e) {
+			Logger.logErr.error (CheckURL.class, e);
 			return null;
 		}
 	}

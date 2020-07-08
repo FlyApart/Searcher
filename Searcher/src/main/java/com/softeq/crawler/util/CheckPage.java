@@ -1,5 +1,6 @@
 package com.softeq.crawler.util;
 
+import com.softeq.crawler.logger.Logger;
 import com.softeq.crawler.parser.HtmlParser;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
@@ -49,6 +50,7 @@ public class CheckPage {
 		try (BufferedReader br = new BufferedReader (new InputStreamReader (currentUrl.openStream ()))) {
 			p.parse (br, parser, false);
 		} catch (Exception e) {
+			Logger.logErr.error (CheckPage.class, e);
 			return;
 		}
 		// Assign the result case insensitive
@@ -105,7 +107,9 @@ public class CheckPage {
 			}
 			return page;
 			// When an exception occurs, an empty string is returned
-		} catch (Exception ignored) {}
+		} catch (Exception e) {
+			Logger.logErr.error (CheckPage.class, e);
+		}
 		return null;
 
 	}

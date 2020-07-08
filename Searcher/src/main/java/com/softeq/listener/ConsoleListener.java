@@ -1,5 +1,6 @@
 package com.softeq.listener;
 
+import com.softeq.crawler.logger.Logger;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -24,19 +25,19 @@ public class ConsoleListener {
 
 	//scanning of input data
 	public void consoleMenu () {
-		System.out.println (SET_URL);
+		Logger.logInf.info (SET_URL);
 		URL = sc.nextLine ();
 
-		System.out.println (SET_LIMIT_CRAWLING);
+		Logger.logInf.info (SET_LIMIT_CRAWLING);
 		try{
 			limitPages = Integer.parseInt (sc.nextLine ());
 		}catch (NumberFormatException e){
-			System.out.println ("Incorrect value!");
+			Logger.logInf.info ("Incorrect value!");
 			consoleMenu ();
 			return;
 		}
 
-		System.out.println (SET_TERMS);
+		Logger.logInf.info (SET_TERMS);
 		terms = Arrays.asList (sc.nextLine ()
 		                         .split (", "));
 	}
