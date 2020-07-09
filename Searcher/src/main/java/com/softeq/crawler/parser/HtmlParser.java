@@ -1,13 +1,11 @@
 package com.softeq.crawler.parser;
 
-import lombok.Getter;
-
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit.ParserCallback;
 
 // Syntactical analyzer
-@Getter
+
 public class HtmlParser extends ParserCallback {
 	// Whether we are currently in the given tag
 	private boolean inTD = false;
@@ -46,5 +44,9 @@ public class HtmlParser extends ParserCallback {
 
 	public void createStringFromPage(char[] data) {
 		components.append (data);
+	}
+
+	public StringBuilder getComponents () {
+		return components;
 	}
 }

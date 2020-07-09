@@ -2,7 +2,6 @@ package com.softeq.crawler.util;
 
 import com.softeq.crawler.logger.Logger;
 import com.softeq.crawler.parser.HtmlParser;
-import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.text.html.HTML;
@@ -17,7 +16,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 
 // Search through specified conditions
-@Getter
+
 public class CheckPage {
 	// Search Criteria
 	private String searchWords;
@@ -27,7 +26,7 @@ public class CheckPage {
 	private Matcher matcher;
 	private StringBuilder page;
 	// Is at least 1 word match found
-	boolean wordMatch;
+	private boolean wordMatch;
 
 
 	public CheckPage (List<String> terms) {
@@ -111,6 +110,17 @@ public class CheckPage {
 			Logger.logErr.error (CheckPage.class, e);
 		}
 		return null;
+	}
 
+	public boolean isWordMatch () {
+		return wordMatch;
+	}
+
+	public Set<String> getSearchLinks () {
+		return searchLinks;
+	}
+
+	public List<Integer> getCountWords () {
+		return countWords;
 	}
 }
